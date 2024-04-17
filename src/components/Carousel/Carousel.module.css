@@ -1,0 +1,30 @@
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    z-index: 2;
+    font-size: 45px;
+    transition: all .2s;
+}
+
+.arrow:hover {
+    color: orange;
+}
+
+.prevArrow {
+    left: 25px;
+}
+
+.nextArrow {
+    right: 25px;
+}
+
+.carouselOverlay {
+    background-image: linear-gradient(to bottom, #000000 20%, rgba(255, 255, 255, .8) 40%, #000000 100%);
+    opacity: .5;
+}

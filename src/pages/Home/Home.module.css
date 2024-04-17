@@ -1,0 +1,51 @@
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    z-index: 2;
+    font-size: 40px;
+    transition: all .2s;
+}
+
+.arrow:hover {
+    color: orange;
+}
+
+.prevArrow {
+    left: -40px;
+}
+
+.nextArrow {
+    right: -40px;
+}
+
+.movieOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all .4s;
+}
+
+.movieCard:hover .movieOverlay {
+    cursor: pointer;
+    opacity: 1;
+}
+
+@media screen and (max-width: 700px) {
+    .arrow {
+        transform: translateY(-80%);
+    }
+
+    .prevArrow {
+        left: -5px;
+    }
+
+    .nextArrow {
+        right: -5px;
+    }
+}

@@ -1,13 +1,171 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(0, 0, 0);
+    overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* link */
+a {
+    transition: all .4s;
+}
+
+a:hover {
+    color: #F09819;
+}
+
+/* Header */
+.header-link {
+    transition: all .4s;
+}
+
+.header-link:hover {
+    color: #F09819;
+}
+
+/* bookingBar select */
+
+select option {
+    appearance: none;
+    padding: 10px 5px;
+}
+
+/* button */
+.btn {
+    border: 1px solid white;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all .4s;
+}
+
+.btn:hover {
+    transform: scale(.95);
+}
+
+.btn-login,
+.btn-toTop,
+.btn-muaVe,
+.btn-capNhat,
+.btn-quanTri,
+.btn-logout {
+    background: linear-gradient(to right, #ff6c4f 0%, #F09819 51%, #ff694a 100%);
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.btn-disabled {
+    background: linear-gradient(to right, #827370 0%, #978b7e 51%, #958987 100%);
+    border: 1px solid transparent;
+    cursor: no-drop;
+}
+
+/* override antd select */
+.bookingSelect .ant-select-selector {
+    border: none !important;
+    box-shadow: none;
+}
+
+/* override antd tab */
+.ant-tabs-left>.ant-tabs-content-holder>.ant-tabs-content>.ant-tabs-tabpane {
+    padding-left: 0 !important;
+}
+
+.ant-tabs-left>.ant-tabs-content-holder {
+    border-color: rgb(66, 66, 66) !important;
+}
+
+.ant-tabs .ant-tabs-tab .ant-tabs-tab-active {
+    color: #F09819 !important;
+    opacity: 1 !important;
+}
+
+.ant-tabs-top>.ant-tabs-nav::before {
+    border-bottom: none !important;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+    background-color: #F09819;
+}
+
+.ant-collapse-borderless>.ant-collapse-item {
+    border-bottom: none !important;
+}
+
+/* override drawer antd */
+
+.ant-drawer-header-title .ant-drawer-close {
+    display: block;
+    color: white;
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+    margin-right: 0;
+}
+
+.ant-drawer-header-title .ant-drawer-close:hover {
+    color: white;
+    opacity: .8;
+}
+
+.ant-modal-footer .ant-btn-primary {
+    background-color: black !important;
+    color: white !important;
+}
+
+.ant-collapse-header {
+    color: white !important;
+    align-items: center !important;
+    display: flex !important;
+}
+
+.ant-progress-text {
+    color: white !important;
+}
+
+/* MUI rating stars */
+.css-1vooibu-MuiSvgIcon-root {
+    fill: #F09819 !important;
+}
+
+.ant-tabs-tab-btn {
+    color: white !important;
+    font-size: 1rem;
+}
+
+.ant-tabs-tab .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #F09819 !important;
+}
+
+/* input-error */
+.input-error {
+    border: 2px solid red;
 }

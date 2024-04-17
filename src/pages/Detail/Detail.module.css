@@ -1,0 +1,15 @@
+.glassMorphinWhite {
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(222, 222, 222, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+.glassMorphinBlack {
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(16, 18, 27, 0.4);
+    backdrop-filter: blur(15px);
+}

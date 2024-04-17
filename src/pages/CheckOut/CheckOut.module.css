@@ -1,0 +1,106 @@
+.manHinhBlur {
+    border-bottom: 40px solid rgba(255, 255, 255, 0.6);
+    filter: drop-shadow(0 0 5px #ffffff);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+}
+
+.tenCumRapEffect {
+    background: linear-gradient(to right, hsl(23, 83%, 56%) 0, hsl(0, 0%, 100%) 10%, hsl(23, 83%, 56%) 20%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s infinite linear;
+    font-weight: bold;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 0;
+    }
+
+    60% {
+        background-position: 600px;
+    }
+
+    100% {
+        background-position: 600px;
+    }
+}
+
+.checkOutWidth {
+    width: 400px;
+}
+
+.contentWidth {
+    width: calc(100% - 400px);
+}
+
+.contentWidthHeader {
+    width: 600px;
+}
+
+.contentNotes {
+    width: 450px;
+    font-size: 12px;
+}
+
+.gheThuong {
+    background-color: white;
+}
+
+.gheVip {
+    background-color: yellow;
+}
+
+.gheDangChon {
+    background-color: rgb(28, 201, 28);
+}
+
+.gheDaDat {
+    background-color: rgb(247, 47, 47);
+    cursor: no-drop;
+}
+
+
+.btnDatVeResponsive {
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    .checkOutWidth {
+        width: 300px;
+        font-size: 14px;
+    }
+
+    .contentWidth {
+        width: calc(100% - 300px);
+    }
+
+    .contentWidthHeader {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .contentWidth {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .checkOutWidth {
+        display: none;
+    }
+
+    .contentWidthHeader {
+        width: 100%;
+    }
+
+    .contentNotes {
+        width: 100%;
+    }
+
+    .btnDatVeResponsive {
+        display: block;
+    }
+}

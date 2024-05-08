@@ -20,8 +20,6 @@ import {
 import { useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
 import dayjs from "dayjs";
-import { Fragment } from "react";
-import { type } from "@testing-library/user-event/dist/type";
 
 const { TextArea } = Input;
 
@@ -31,7 +29,6 @@ export default function FilmEdit(props) {
     (state) => state.QuanLyPhimReducer
   );
   const [form] = useForm();
-  const [imageUrl, setImageUrl] = useState();
   const [initialValues, setInitialValues] = useState({
     maPhim: "",
     tenPhim: "",
@@ -106,26 +103,19 @@ export default function FilmEdit(props) {
   };
 
   const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      return;
-    }
-    if (info.file.status === "done") {
+    if (info.fileList.length > 0) {
       // Get this url from response in real world.
-      const { file } = info;
       if (
-        file.type === "image/png" ||
-        file.type === "image/jpeg" ||
-        file.type === "image/gif"
+        info.file.type === "image/png" ||
+        info.file.type === "image/jpeg" ||
+        info.file.type === "image/gif"
       ) {
         // Tao doi tuong doc file
         let reader = new FileReader();
         // bat dau doc file
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(info.file);
         // doc file xong thi load file
-        reader.onload = (e) => {
-          setImageUrl(e.target.result);
-        };
-        setValues("hinhAnh", file);
+        setValues("hinhAnh", info.file);
       }
     }
   };
@@ -266,17 +256,7 @@ export default function FilmEdit(props) {
               beforeUpload={beforeUpload}
               onChange={handleChange}
             >
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="upload"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              ) : (
-                uploadButton
-              )}
+              {uploadButton}
             </Upload>
           </Form.Item>
           <Form.Item label="Actions">

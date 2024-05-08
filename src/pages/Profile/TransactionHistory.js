@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { layThongTinTaiKhoanAction } from "../../redux/actions/QuanLyNguoiDungActions";
-import { Table, Tag } from "antd";
+import { Table, Tag, Spin } from "antd";
 import dayjs from "dayjs";
 
 export default function TransactionHistory() {
@@ -13,7 +13,7 @@ export default function TransactionHistory() {
   useEffect(() => {
     dispatch(layThongTinTaiKhoanAction());
   }, []);
-
+  
   const columns = [
     {
       title: "Mã vé",
@@ -90,6 +90,14 @@ export default function TransactionHistory() {
         bordered={false}
         scroll={{
           x: 1300,
+        }}
+        loading={{
+          indicator: (
+            <div>
+              <Spin />
+            </div>
+          ),
+          spinning: !thongTinTaiKhoan?.thongTinDatVe.length > 0,
         }}
       />
     </div>

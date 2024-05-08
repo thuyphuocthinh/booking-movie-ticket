@@ -21,7 +21,11 @@ export const dangNhapAction = (thongTinDangNhap) => {
     try {
       const result = await quanLyNguoiDungService.dangNhap(thongTinDangNhap);
       if (result.data.statusCode === STATUS_CODE.SUCCESS) {
-        dispatch({ type: DISPLAY_LOADING });
+        setTimeout(() => {
+          toast.success("Login successfully", {
+            position: "top-right",
+          });
+        }, 500);
         dispatch({
           type: DANG_NHAP,
           payload: result.data.content,
@@ -37,17 +41,12 @@ export const dangNhapAction = (thongTinDangNhap) => {
         } else {
           history.push("/home");
         }
-        toast.success("Login successfully", {
-          position: "top-right",
-        });
       }
     } catch (error) {
       console.log("Error dang nhap: ", error);
       toast.error(error.response?.data.content, {
         position: "top-right",
       });
-    } finally {
-      dispatch({ type: HIDE_LOADING });
     }
   };
 };
@@ -71,17 +70,13 @@ export const dangKyAction = (thongTinDangKy) => {
 };
 
 export const timKiemNguoiDungAction = (email, taiKhoan) => {
-  console.log(email, taiKhoan);
   return async (dispatch) => {
     try {
       dispatch({ type: DISPLAY_LOADING });
       const result = await quanLyNguoiDungService.timKiemNguoiDung(taiKhoan);
       if (result.data.statusCode === STATUS_CODE.SUCCESS) {
-        const timKiemTheoEmail = await _.find(
-          result.data.content,
-          function (nguoiDung) {
-            return nguoiDung.email === email;
-          }
+        const timKiemTheoEmail = await result.data.content.find(
+          (nguoiDung) => nguoiDung.email === email
         );
         await dispatch({
           type: SET_THONG_TIN_NGUOI_DUNG_TIM_KIEM,

@@ -42,7 +42,6 @@ export default function Signup() {
       hoTen: "",
     },
     onSubmit: (values) => {
-      console.log("submit values: ", values);
       dispatch(dangKyAction(values));
     },
   });

@@ -6,12 +6,13 @@ import { USER_LOGIN } from "../../util/settings/settings";
 import { useState } from "react";
 import _ from "lodash";
 import CheckOutSideBar from "./CheckOutSideBar";
-import { OPEN_DRAWER } from "../../redux/types/DrawerTypes";
+import { CLOSE_DRAWER, OPEN_DRAWER } from "../../redux/types/DrawerTypes";
 import CheckOutDrawer from "../../components/Drawer/CheckOutDrawer";
 import Countdown, { zeroPad } from "react-countdown";
 import { CLOSE_MODAL, OPEN_MODAL } from "../../redux/types/ModalTypes";
 import { history } from "../../App";
 import { useRef } from "react";
+import { SET_COUNTDOWN_KEY } from "../../redux/types/CountdownTypes";
 
 const thongTinNguoiDungLocal = JSON.parse(localStorage.getItem(USER_LOGIN));
 const kiTuGhe = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"];
@@ -25,11 +26,12 @@ export default function CheckOut(props) {
   const { key } = useSelector((state) => state.CountdownReducer);
   useEffect(() => {
     dispatch(layDanhSachPhongVeAction(props.match.params.id));
+    xoaGheDaChon();
   }, []);
 
   useEffect(() => {
     date = Date.now();
-  }, [key])
+  }, [key]);
 
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
@@ -46,6 +48,8 @@ export default function CheckOut(props) {
                   dispatch({ type: CLOSE_MODAL });
                   history.push(`/checkout/${props.match.params.id}`);
                   date = Date.now();
+                  dispatch({ type: SET_COUNTDOWN_KEY });
+                  dispatch({ type: CLOSE_DRAWER });
                 }}
               >
                 {" "}
@@ -54,6 +58,7 @@ export default function CheckOut(props) {
             </p>
           ),
           maskClosable: false,
+          closeIcon: false,
         },
       });
     } else {
@@ -136,6 +141,7 @@ export default function CheckOut(props) {
     <div className={`mt-24 ${CheckOutStyle.contentWidth}`}>
       <div className="text-white pb-6">
         <div className="flex flex-col">
+          {/* Countdown */}
           <div
             className={`${CheckOutStyle.contentWidthHeader} flex-col flex items-center sm:flex-row sm:justify-between mx-auto mb-4`}
           >
@@ -146,7 +152,7 @@ export default function CheckOut(props) {
               Thời gian giữ ghế:{" "}
               <span className="text-orange-500">
                 <Countdown
-                  date={date + 300000}
+                  date={date + 300005}
                   renderer={renderer}
                   ref={clockRef}
                   key={key}
@@ -155,6 +161,7 @@ export default function CheckOut(props) {
               </span>
             </p>
           </div>
+          {/* Screen */}
           <div
             id="rapChieu"
             className="overflow-auto mx-auto py-4 lg:py-0"
@@ -184,6 +191,7 @@ export default function CheckOut(props) {
               {renderDanhSachGhe()}
             </div>
           </div>
+          {/* Notes */}
           <div
             className={`flex justify-between items-center gap-2 mx-auto mt-6 flex-wrap ${CheckOutStyle.contentNotes}`}
           >
@@ -216,6 +224,7 @@ export default function CheckOut(props) {
               <span>Ghế đang chọn</span>
             </div>
           </div>
+          {/* Checkout mobile button */}
           <div className={`${CheckOutStyle.btnDatVeResponsive} mt-8`}>
             <button
               className={`btn ${
@@ -234,6 +243,7 @@ export default function CheckOut(props) {
                         thongTinNguoiDungLocal={thongTinNguoiDungLocal}
                         maLichChieu={props.match.params.id}
                         clockRef={clockRef}
+                        xoaGheDaChon={xoaGheDaChon}
                       />
                     ),
                   },
@@ -244,6 +254,7 @@ export default function CheckOut(props) {
             </button>
           </div>
         </div>
+        {/* Checkout side bar */}
         <CheckOutSideBar
           danhSachPhongVe={danhSachPhongVe}
           danhSachVeChon={danhSachVeChon}

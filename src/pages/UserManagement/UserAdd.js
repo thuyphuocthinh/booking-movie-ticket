@@ -18,7 +18,6 @@ export default function UserAdd() {
       maNhom: GROUP_ID,
     };
     dispatch(themNguoiDungAction(values));
-    form.resetFields();
   };
   useEffect(() => {
     dispatch(layDanhSachLoaiNguoiDungAction());

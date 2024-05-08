@@ -5,6 +5,7 @@ import { STATUS_CODE } from "../../util/settings/settings";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../types/LoadingTypes";
 import { OPEN_MODAL } from "../types/ModalTypes";
 import { SET_DANH_SACH_PHONG_VE } from "../types/QuanLyDatVeTypes";
+import { layThongTinLichChieuHeThongRapAction } from "./QuanLyRapActions";
 
 export const layDanhSachPhongVeAction = (maLichChieu) => {
   return async (dispatch) => {
@@ -37,6 +38,7 @@ export const datVeAction = (thongTinVe) => {
             title: "",
             Component: <DatVeModal thongTinVe={thongTinVe} />,
             maskClosable: false,
+            closeIcon: false,
             width: 400,
           },
         });

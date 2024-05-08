@@ -6,6 +6,7 @@ const initialState = {
   Component: <p></p>,
   trailerLink: "",
   maskClosable: true,
+  closeIcon: true,
   width: 700,
 };
 
@@ -19,6 +20,7 @@ export const ModalReducer = (state = initialState, action) => {
         Component: action.payload.Component,
         trailerLink: action.payload.trailerLink,
         maskClosable: action.payload.maskClosable,
+        closeIcon: action.payload.closeIcon,
         width: action.payload.width,
       };
     }
@@ -30,6 +32,7 @@ export const ModalReducer = (state = initialState, action) => {
         Component: <p></p>,
         trailerLink: "",
         maskClosable: true,
+        closeIcon: true,
       };
     }
     default: {

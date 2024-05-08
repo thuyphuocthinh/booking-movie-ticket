@@ -165,8 +165,8 @@ export default function Home() {
               </div>
             </Badge.Ribbon>
             <p className="text-center font-bold text-md pt-4 pb-4 text-orange-400">
-              {phimDangChieu.tenPhim.trim().length > 20
-                ? phimDangChieu.tenPhim.trim().slice(0, 20) + "..."
+              {phimDangChieu.tenPhim.trim().length > 15
+                ? phimDangChieu.tenPhim.trim().slice(0, 15) + "..."
                 : phimDangChieu.tenPhim}
             </p>
             <div>
@@ -176,7 +176,7 @@ export default function Home() {
                   history.push(`/detail/${phimDangChieu.maPhim}`);
                 }}
               >
-                Mua vé
+                Chi tiết
               </button>
             </div>
           </div>
@@ -217,8 +217,8 @@ export default function Home() {
               </div>
             </Badge.Ribbon>
             <p className="text-center font-bold text-md pt-4 pb-4 text-orange-400">
-              {phimSapChieu.tenPhim.trim().length > 20
-                ? phimSapChieu.tenPhim.trim().slice(0, 20) + "..."
+              {phimSapChieu.tenPhim.trim().length > 15
+                ? phimSapChieu.tenPhim.trim().slice(0, 15) + "..."
                 : phimSapChieu.tenPhim}
             </p>
             <div>
@@ -228,7 +228,7 @@ export default function Home() {
                   history.push(`/detail/${phimSapChieu.maPhim}`);
                 }}
               >
-                Mua vé
+                Chi tiết
               </button>
             </div>
           </div>

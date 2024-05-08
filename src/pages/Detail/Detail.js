@@ -65,7 +65,7 @@ export default function Detail(props) {
                   />
                   <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
                     <button
-                      className="text-black text-2xl rounded-full border-black border-solid border-2 w-12 h-12"
+                      className="text-white bg-black bg-opacity-50 text-2xl rounded-full border-black border-solid border-2 w-12 h-12"
                       onClick={() => {
                         openTrailer(thongTinLichChieuPhim?.trailer);
                       }}

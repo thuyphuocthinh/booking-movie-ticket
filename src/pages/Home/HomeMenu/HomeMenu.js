@@ -70,6 +70,7 @@ export default function HomeMenu(props) {
         }),
       };
     });
+    
   };
   const renderLichChieuHeThongRapDesktop = () => {
     return lichChieuTheoHeThongRap.map((heThongRap, index) => {

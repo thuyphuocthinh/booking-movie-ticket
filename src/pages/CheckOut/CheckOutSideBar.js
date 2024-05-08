@@ -7,7 +7,7 @@ import { datVeAction } from "../../redux/actions/QuanLyDatVeActions";
 
 export default function CheckOutSideBar(props) {
   const dispatch = useDispatch();
-  const [thanhToan, setThanhToan] = useState("");
+  const [thanhToan, setThanhToan] = useState("chuyenKhoan");
   const {
     danhSachPhongVe,
     danhSachVeChon,
@@ -30,6 +30,7 @@ export default function CheckOutSideBar(props) {
         danhSachVe: danhSachVeChon,
       })
     );
+    setThanhToan("chuyenKhoan");
   };
   return (
     <div
@@ -113,38 +114,41 @@ export default function CheckOutSideBar(props) {
           <div>
             <p className="text-orange-300 mb-2"> Hình thức thanh toán</p>
             <div>
-              <div className="flex items-center mb-4">
-                <input
-                  id="chuyenKhoan"
-                  type="radio"
-                  name="thanhToan"
-                  defaultValue="chuyenKhoan"
-                  className="w-5 h-5 border-gray-300"
-                  onChange={handleChange}
-                />
-                <label
-                  htmlFor="chuyenKhoan"
-                  className="block ms-2 text-md text-white dark:text-gray-300"
-                >
-                  Chuyển khoản ngân hàng
-                </label>
-              </div>
-              <div className="flex items-center mb-4">
-                <input
-                  id="tienMat"
-                  type="radio"
-                  name="thanhToan"
-                  onChange={handleChange}
-                  defaultValue="tienMat"
-                  className="w-5 h-5 border-gray-300"
-                />
-                <label
-                  htmlFor="tienMat"
-                  className="block ms-2 text-md text-white dark:text-gray-300"
-                >
-                  Tiền mặt
-                </label>
-              </div>
+              <form>
+                <div className="flex items-center mb-4">
+                  <input
+                    id="chuyenKhoan"
+                    type="radio"
+                    name="thanhToan"
+                    value="chuyenKhoan"
+                    className="w-5 h-5 border-gray-300 cursor-pointer"
+                    onChange={handleChange}
+                    defaultChecked
+                  />
+                  <label
+                    htmlFor="chuyenKhoan"
+                    className="block ms-2 text-md text-white dark:text-gray-300 cursor-pointer"
+                  >
+                    Chuyển khoản ngân hàng
+                  </label>
+                </div>
+                <div className="flex items-center mb-4">
+                  <input
+                    id="tienMat"
+                    type="radio"
+                    name="thanhToan"
+                    onChange={handleChange}
+                    value="tienMat"
+                    className="w-5 h-5 border-gray-300 cursor-pointer"
+                  />
+                  <label
+                    htmlFor="tienMat"
+                    className="block ms-2 text-md text-white dark:text-gray-300 cursor-pointer"
+                  >
+                    Tiền mặt
+                  </label>
+                </div>
+              </form>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import {
   layDanhSachPhimAction,
   xoaPhimAction,
 } from "../../redux/actions/QuanLyPhimActions";
-import { Button, Table, Input, Popconfirm } from "antd";
+import { Button, Table, Input, Popconfirm, Spin } from "antd";
 import { OPEN_MODAL } from "../../redux/types/ModalTypes";
 import TrailerModal from "../../components/Modal/TrailerModal";
 import dayjs from "dayjs";
@@ -22,7 +22,6 @@ export default function FilmManagement() {
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
   const handleChange = (pagination, filters, sorter) => {
-    console.log("Various parameters", pagination, filters, sorter);
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
@@ -160,6 +159,14 @@ export default function FilmManagement() {
           scroll={{
             x: 1300,
             y: 800,
+          }}
+          loading={{
+            indicator: (
+              <div>
+                <Spin />
+              </div>
+            ),
+            spinning: !danhSachTatCaPhim.length > 0,
           }}
           rowKey={(record) => record.maPhim}
           expandable={{

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Input, Table, Tag } from "antd";
+import { Button, Input, Table, Spin } from "antd";
 import {
   layThongTinCumRapTheoHeThongAction,
   layThongTinHeThongRapAction,
@@ -20,10 +20,10 @@ export default function CinemaManagement() {
   useEffect(() => {
     dispatch(layThongTinHeThongRapAction());
   }, []);
+
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
   const handleChange = (pagination, filters, sorter) => {
-    console.log("Various parameters", pagination, filters, sorter);
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
@@ -165,30 +165,10 @@ export default function CinemaManagement() {
     },
   ];
 
-  const onSearch = (value, _e, info) => {
-    console.log(value);
-    // dispatch(layDanhSachNguoiDungAction(value));
-  };
-
-  const onSearchChange = (e) => {
-    const { value } = e.target;
-    if (value === "") {
-      // dispatch(layDanhSachNguoiDungAction());
-    }
-  };
-
   return (
     <div>
       <h2 className="text-center text-xl font-bold">Quản lý hệ thống rạp</h2>
-      <div className="my-4">
-        <Search
-          placeholder="Tìm kiếm hệ thống rạp"
-          allowClear
-          onSearch={onSearch}
-          onChange={onSearchChange}
-          enterButton
-        />
-      </div>
+
       <div className="mt-6">
         <Table
           columns={columns}
@@ -201,6 +181,18 @@ export default function CinemaManagement() {
               setMaHeThongRapState(event.maHeThongRap);
               dispatch(layThongTinCumRapTheoHeThongAction(event.maHeThongRap));
             },
+          }}
+          scroll={{
+            x: 1000,
+            y: 800,
+          }}
+          loading={{
+            indicator: (
+              <div>
+                <Spin />
+              </div>
+            ),
+            spinning: !thongTinHeThongRap.length > 0,
           }}
         />
       </div>

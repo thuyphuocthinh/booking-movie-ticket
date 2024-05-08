@@ -3,7 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import * as Yup from "yup";
-import { GROUP_ID } from "../../util/settings/settings";
+import { GROUP_ID, USER_LOGIN } from "../../util/settings/settings";
 import { useDispatch } from "react-redux";
 import { capNhatThongTinNguoiDungAction } from "../../redux/actions/QuanLyNguoiDungActions";
 
@@ -41,7 +41,6 @@ export default function UserInfo(props) {
         matKhau: thongTinNguoiDungTimKiem.matKhau,
         maLoaiNguoiDung: thongTinNguoiDungTimKiem.maLoaiNguoiDung,
       };
-      console.log("values", values);
       dispatch(capNhatThongTinNguoiDungAction(values));
       setIsFormEditVisible(false);
     },

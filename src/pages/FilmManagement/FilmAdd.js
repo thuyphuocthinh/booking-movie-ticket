@@ -53,7 +53,7 @@ export default function FilmAdd() {
   };
 
   const handleDatePicker = (date, dateString) => {
-    console.log(date, dateString);;
+    console.log(date, dateString);
     setValues("ngayKhoiChieu", dateString);
   };
 
@@ -70,26 +70,23 @@ export default function FilmAdd() {
   };
 
   const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      return;
-    }
-    if (info.file.status === "done") {
+    console.log(info);
+    if (info.fileList.length > 0) {
       // Get this url from response in real world.
-      const {file} = info;
       if (
-        file.type === "image/png" ||
-        file.type === "image/jpeg" ||
-        file.type === "image/gif"
+        info.file.type === "image/png" ||
+        info.file.type === "image/jpeg" ||
+        info.file.type === "image/gif"
       ) {
         // Tao doi tuong doc file
         let reader = new FileReader();
         // bat dau doc file
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(info.file);
         // doc file xong thi load file
         reader.onload = (e) => {
           setImageUrl(e.target.result);
         };
-        setValues("hinhAnh", file);
+        setValues("hinhAnh", info.file);
       }
     }
   };
@@ -120,11 +117,14 @@ export default function FilmAdd() {
         formData.append(key, initialValues[key]);
       } else {
         // append file se khac append cac du lieu khac do server quy dinh
-        formData.append("File", initialValues.hinhAnh, initialValues.hinhAnh.name);
+        formData.append(
+          "File",
+          initialValues.hinhAnh,
+          initialValues.hinhAnh.name
+        );
       }
     }
     dispatch(themPhimUploadHinhAction(formData));
-
   };
 
   return (
@@ -225,17 +225,7 @@ export default function FilmAdd() {
               beforeUpload={beforeUpload}
               onChange={handleChange}
             >
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="upload"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              ) : (
-                uploadButton
-              )}
+              {uploadButton}
             </Upload>
           </Form.Item>
           <Form.Item label="Actions">
@@ -251,4 +241,3 @@ export default function FilmAdd() {
     </div>
   );
 }
-

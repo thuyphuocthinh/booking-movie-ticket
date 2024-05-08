@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { layDanhSachNguoiDungAction } from "../../redux/actions/QuanLyNguoiDungActions";
-import { Input, Table, Tag } from "antd";
+import { Input, Table, Tag, Spin } from "antd";
 const { Search } = Input;
 
 export default function UserManagement() {
@@ -16,7 +16,6 @@ export default function UserManagement() {
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
   const handleChange = (pagination, filters, sorter) => {
-    console.log("Various parameters", pagination, filters, sorter);
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
@@ -116,6 +115,14 @@ export default function UserManagement() {
           onChange={handleChange}
           scroll={{
             x: 1300,
+          }}
+          loading={{
+            indicator: (
+              <div>
+                <Spin />
+              </div>
+            ),
+            spinning: !danhSachNguoiDung.length > 0,
           }}
         />
       </div>

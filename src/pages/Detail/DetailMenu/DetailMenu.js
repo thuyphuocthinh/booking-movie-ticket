@@ -25,7 +25,7 @@ export default function DetailMenu(props) {
         ),
         children: cumRap.lichChieuPhim?.map((lichChieu, index) => {
           return (
-            <div key={index} className="flex gap-4 py-2 px-2 ">
+            <div key={index} className="flex gap-4 py-2 px-2">
               <div style={{ width: "100px" }}>
                 <img
                   src={thongTinLichChieuPhim?.hinhAnh}
@@ -194,7 +194,9 @@ export default function DetailMenu(props) {
                 {renderLichChieuPhimDesktop()}
               </Tabs>
             ) : (
-              <p className="text-center text-white">Hiện không có suất chiếu nào.</p>
+              <p className="text-center text-white">
+                Hiện không có suất chiếu nào.
+              </p>
             )}
           </TabPane>
           <TabPane tab="Thông tin" key={2}>
@@ -217,7 +219,13 @@ export default function DetailMenu(props) {
         <Tabs defaultActiveKey="1" centered>
           <TabPane tab="Lịch chiếu" key={1}>
             <Tabs defaultActiveKey="1" tabPosition="top" centered>
-              {renderLichChieuPhimMobile()}
+              {thongTinLichChieuPhim.heThongRapChieu?.length > 0 ? (
+                renderLichChieuPhimMobile()
+              ) : (
+                <p className="text-center text-white">
+                  Hiện không có suất chiếu nào.
+                </p>
+              )}
             </Tabs>
           </TabPane>
           <TabPane tab="Thông tin" key={2}>
